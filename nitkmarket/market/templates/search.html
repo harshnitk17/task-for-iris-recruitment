@@ -1,0 +1,208 @@
+
+
+
+  {% load static %}
+  <!DOCTYPE HTML>
+  <html>
+  	<head>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title>Nitk market</title>
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
+  	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+  	<meta name="author" content="FreeHTML5.co" />
+
+
+
+  	<meta property="og:title" content=""/>
+  	<meta property="og:image" content=""/>
+  	<meta property="og:url" content=""/>
+  	<meta property="og:site_name" content=""/>
+  	<meta property="og:description" content=""/>
+  	<meta name="twitter:title" content="" />
+  	<meta name="twitter:image" content="" />
+  	<meta name="twitter:url" content="" />
+  	<meta name="twitter:card" content="" />
+
+  	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+
+  	<!-- Animate.css -->
+  	<link rel="stylesheet" href="{% static 'market/css/animate.css' %}">
+  	<!-- Icomoon Icon Fonts-->
+  	<link rel="stylesheet" href="{% static 'market/css/icomoon.css' %}">
+  	<!-- Themify Icons-->
+  	<link rel="stylesheet" href="{% static 'market/css/themify-icons.css' %}">
+  	<!-- Bootstrap  -->
+  	<link rel="stylesheet" href="{% static 'market/css/bootstrap.css' %}">
+
+  	<!-- Magnific Popup -->
+  	<link rel="stylesheet" href="{% static 'market/css/magnific-popup.css' %}">
+
+  	<!-- Owl Carousel  -->
+  	<link rel="stylesheet" href="{% static 'market/css/owl.carousel.min.css' %}">
+  	<link rel="stylesheet" href="{% static 'market/css/owl.theme.default.min.css' %}">
+
+  	<!-- Theme style  -->
+  	<link rel="stylesheet" href="{% static 'market/css/style.css' %}">
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  	<!-- Modernizr JS -->
+  	<script src="{% static 'market/js/modernizr-2.6.2.min.js' %}"></script>
+  	<!-- FOR IE9 below -->
+  	<!--[if lt IE 9]>
+  	<script src="js/respond.min.js"></script>
+  	<![endif]-->
+
+  	</head>
+  	<body>
+
+  	<div class="gtco-loader"></div>
+
+  	<div id="page">
+
+
+  	<div class="page-inner">
+  	<nav class="gtco-nav" role="navigation" style="background-color:black">
+  		<div class="gtco-container">
+
+  			<div class="row">
+  				<div class="col-sm-4 col-xs-12">
+  					<div id="gtco-logo"><a href="/">Nitk market <em>.</em></a></div>
+  				</div>
+  				<div class="col-xs-8 text-right menu-1">
+  					<ul>
+              {% if user.is_authenticated %}
+              <li><b style="color:magenta">  Hi {{ user.username }}!</b></li>
+              <li><a href="/market/home"><b style="color:magenta">Explore products</b></a></li>
+                <li>
+                <a href="/profile/myprofile"><b style="color:magenta">My Profile</b></a></li>
+                    <li><a href="/profile/myprofile/myadds"><b style="color:magenta">My Adds</b></a></li>
+  							<li>
+                <a href="/add/post"><b style="color:magenta">Post an ADD</b></a></li>
+  							<li>
+                <a href="{% url 'logout' %}"><b style="color:magenta">LOG OUT</b></a></li>
+                <li>
+                  {% else %}<li><a href="/market/home"><b style="color:magenta">Explore products</b></a></li><li>
+                    <a href="{% url 'login' %}"><b style="color:magenta">LOGIN</b></a></li>
+                    <li><a href="/accounts/signup"><b style="color:magenta">SIGN UP</b></a></li>
+                  {% endif %}
+  						<li><a href="https://github.com/harshnitk17/web-club-recruitment-pastebin/blob/master/README.md" target="_blank"><b>FAQ</b></a></li>
+
+
+
+  					</ul>
+  				</div>
+  			</div>
+
+  		</div>
+  	</nav>
+
+
+
+
+  		<div class="gtco-section border-bottom">
+  			<div class="gtco-container">
+  				<div class="row">
+  					<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+  						<h2>Products searchterm : {{ keyword }}</h2>
+  						<p>All products (sorted by date)</p>
+  					</div>
+  				</div>
+
+
+  				<div class="row">
+  			{% for object in objects %}
+  				<div class="col-md-3">
+  					<div class="price-box">
+  						<h2 class="pricing-plan">{{ object.title }}</h2>
+
+  						<h3>Price:{{ object.price }}</h3>
+  						<p><center><img src='{{ MEDIA_URL }}{{ object.imagefile }}' class="center" alt="product photo" width="80px" height="80px"
+  					<button>	<a href="{% url 'market:show_add' object.id %}" target="_blank" class="btn btn-default btn-sm">Open add</a></button>
+
+
+  					</div>
+  				</div>{% endfor %}
+
+  			</div>
+
+
+
+
+  	<footer id="gtco-footer" role="contentinfo">
+  		<div class="gtco-container">
+  			<div class="row row-p	b-md">
+
+  				<div class="col-md-4">
+  					<div class="gtco-widget">
+  						<h3>About <span class="footer-logo">Nitk market<span>.<span></span></h3>
+  						<p>A website where students can buy or rent their stuff!!!</p>
+  					</div>
+  				</div>
+
+  				<div class="col-md-4 col-md-push-1">
+
+  				</div>
+
+  				<div class="col-md-4">
+  					<div class="gtco-widget">
+  						<h3>Get In Touch</h3>
+  						<ul class="gtco-quick-contact">
+  							<li><a href="#"><i class="icon-phone"></i> +91 My phone number</a></li>
+  							<li><a href="#"><i class="icon-mail2"></i> harshprakashgupta@gmail.com</a></li>
+
+  						</ul>
+  					</div>
+  				</div>
+
+  			</div>
+
+  			<div class="row copyright">
+  				<div class="col-md-12">
+  					<p class="pull-left">
+  						<small class="block">&copy; 2019  All Rights Reserved.</small>
+  						<small class="block">Designed by <a href="http://harshnitk17.github.io" target="_blank">Harsh Prakash Gupta</a> </small>
+  					</p>
+  					<p class="pull-right">
+  						<ul class="gtco-social-icons pull-right">
+
+  							<li><a href="https://www.linkedin.com/in/harsh-prakash-gupta-b9140816a/" target="_blank"><i class="icon-linkedin"></i></a></li>
+  							<li><a href="https://www.facebook.com/harshprakash.gupta" target="_blank"><i class="icon-facebook"></i></a></li>
+  							<li><a href="https://github.com/harshnitk17" target="_blank"><i style="font-size:24px" class="fa">&#xf09b;</i></a></li>
+
+  						</ul>
+  					</p>
+  				</div>
+  			</div>
+
+  		</div>
+  	</footer>
+  	</div>
+
+  	</div>
+
+  	<div class="gototop js-top">
+  		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+  	</div>
+
+  	<!-- jQuery -->
+  	<script src="{% static 'market/js/jquery.min.js' %}"></script>
+  	<!-- jQuery Easing -->
+  	<script src="{% static 'market/js/jquery.easing.1.3.js' %}"></script>
+  	<!-- Bootstrap -->
+  	<script src="{% static 'market/js/bootstrap.min.js' %}"></script>
+  	<!-- Waypoints -->
+  	<script src="{% static 'market/js/jquery.waypoints.min.js' %}"></script>
+  	<!-- Carousel -->
+  	<script src="{% static 'market/js/owl.carousel.min.js' %}"></script>
+  	<!-- countTo -->
+  	<script src="{% static 'market/js/jquery.countTo.js' %}"></script>
+  	<!-- Magnific Popup -->
+  	<script src="{% static 'market/js/jquery.magnific-popup.min.js' %}"></script>
+  	<script src="{% static 'market/js/magnific-popup-options.js' %}"></script>
+  	<!-- Main -->
+  	<script src="{% static 'market/js/main.js' %}"></script>
+
+  	</body>
+  </html>
